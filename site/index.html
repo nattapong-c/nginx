@@ -9,12 +9,13 @@
   <body>
     <button onclick="login()">login</button>
     <button onclick="test()">test</button>
+    <button onclick="test2()">test2</button>
   </body>
   <script>
     function login() {
         console.log('clicj login')
         var r = new XMLHttpRequest();
-        r.open("POST", "http://localhost:3000/login", true);
+        r.open("POST", "https://demo-cookie-service-production.up.railway.app/login", true);
         r.withCredentials = true
         r.onreadystatechange = function () {
             console.log(r.readyState, r.status, document.cookie)
@@ -26,7 +27,19 @@
     function test() {
         console.log('clicj test')
         var r = new XMLHttpRequest();
-        r.open("GET", "http://localhost:3000", true);
+        r.open("GET", "https://demo-cookie-service-production.up.railway.app", true);
+        r.withCredentials = true
+        r.onreadystatechange = function () {
+            console.log(r.readyState, r.status)
+          if (r.readyState != 4 || r.status != 200) return;
+          alert("Success: " + r.responseText);
+        };
+        r.send()
+    }
+    function test2() {
+        console.log('clicj test2')
+        var r = new XMLHttpRequest();
+        r.open("GET", "https://demo-cookie-service-production.up.railway.app/h2", true);
         r.withCredentials = true
         r.onreadystatechange = function () {
             console.log(r.readyState, r.status)
